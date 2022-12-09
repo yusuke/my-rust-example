@@ -1,3 +1,4 @@
+use std::fmt::{Debug, Formatter};
 use std::process::{ExitCode, Termination};
 
 #[test]
@@ -37,4 +38,29 @@ fn test_termination() {
 
 fn create_exit() -> Exit {
     Exit {}
+}
+
+struct Panic {
+    message: String,
+}
+
+impl Debug for Panic {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+        write!(f, "Panic {}", self.message)
+    }
+}
+
+fn make_no_panic(msg: String) -> Result<String, Panic> {
+    if msg.is_empty() {
+        Result::Err(Panic { message: String::from("no message") })
+    } else {
+        Result::Ok(msg)
+    }
+}
+
+#[test]
+fn test_make_no_panic() {
+    let result = make_no_panic(String::from(""));
+    let string = result.unwrap();
+    assert_eq!(string.is_empty(), false);
 }
