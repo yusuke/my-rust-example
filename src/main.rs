@@ -1,5 +1,6 @@
 mod rule;
 mod value;
+mod game;
 
 fn main() {
     let number: i32 = 1 + 1;

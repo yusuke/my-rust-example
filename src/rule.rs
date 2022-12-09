@@ -29,6 +29,18 @@ impl Rule for AppendingFixedTextOnMultipleOfN {
     }
 }
 
+pub struct DefaultRule {}
+
+impl DefaultRule {
+    pub fn apply(value: Value) -> Value {
+        Value {
+            original: value.original,
+            text: value.original.to_string(),
+        }
+    }
+    pub const INSTANCE: DefaultRule = DefaultRule {};
+}
+
 #[test]
 fn test_fixed_rule_available_match_case() {
     let rule = AppendingFixedTextOnMultipleOfN { divisor: 3, text: String::from("foo") };
@@ -49,5 +61,13 @@ fn test_fixed_rule_apply_match_case() {
     };
     let result = rule.apply(value);
     let expected = Value { original: 9, text: "foo".to_string() };
+    assert_eq!(result, expected);
+}
+
+#[test]
+fn default_rule_returns_original_and_its_string() {
+    let value = Value::original(20);
+    let result = DefaultRule::apply(value);
+    let expected = Value { original: 20, text: "".to_string() };
     assert_eq!(result, expected);
 }

@@ -5,6 +5,15 @@ pub struct Value {
     pub text: String,
 }
 
+impl Value {
+    pub fn new() -> Value {
+        Value { original: 0, text: "".to_string() }
+    }
+    pub fn original(original: i32) -> Value {
+        Value { original, text: "".to_string() }
+    }
+}
+
 impl Debug for Value {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         f.write_str("Value { original:").unwrap();
