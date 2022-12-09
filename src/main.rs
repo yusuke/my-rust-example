@@ -1,7 +1,10 @@
+extern crate core;
+
 mod rule;
 mod value;
 mod game;
 mod panic;
+mod example;
 
 fn main() {
     let number: i32 = 1 + 1;

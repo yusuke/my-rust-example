@@ -9,7 +9,7 @@ pub fn traditional_game<const L: usize>(rules: &[Box<dyn Rule>; L]) -> Box<dyn G
     todo!()
 }
 
-trait Game {
+pub trait Game {
     fn apply(&self, values: &Vec<i32>) -> Vec<Value>;
 }
 

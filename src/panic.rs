@@ -1,6 +1,8 @@
 use std::fmt::{Debug, Formatter};
 use std::process::{ExitCode, Termination};
 
+use crate::example::deep::Panic;
+
 #[test]
 fn test_panic() {
     one();
@@ -38,16 +40,6 @@ fn test_termination() {
 
 fn create_exit() -> Exit {
     Exit {}
-}
-
-struct Panic {
-    message: String,
-}
-
-impl Debug for Panic {
-    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        write!(f, "Panic {}", self.message)
-    }
 }
 
 fn make_no_panic(msg: String) -> Result<String, Panic> {
