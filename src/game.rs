@@ -26,3 +26,9 @@ impl Game for DefaultGame {
         result
     }
 }
+
+#[test]
+fn test_traditional_game() {
+    let rules: [Box<dyn Rule>; 0] = [];
+    let _game = traditional_game(&rules);
+}
