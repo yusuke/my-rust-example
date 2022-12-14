@@ -71,3 +71,17 @@ fn default_rule_returns_original_and_its_string() {
     let expected = Value { original: 20, text: "".to_string() };
     assert_eq!(result, expected);
 }
+
+mod another {
+    #[test]
+    fn test_on_another() {
+        assert!(false);
+    }
+
+    mod stranger {
+        #[test]
+        fn test_on_stranger() {
+            assert!(false);
+        }
+    }
+}
